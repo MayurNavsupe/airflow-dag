@@ -1,30 +1,42 @@
-# Step 1: Importing Modules
-# To initiate the DAG Object
 from airflow import DAG
-# Importing datetime and timedelta modules for scheduling the DAGs
-from datetime import timedelta, datetime
-# Importing operators 
-from airflow.operators.dummy_operator import DummyOperator
-
-# Step 2: Initiating the default_args
-default_args = {
-        'owner' : 'airflow',
-        'start_date' : days_ago(1),
-
+from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.operators.bash import BashOperator
+from datetime import datetime
+from random import randint
+def _choosing_best_model(ti):
+accuracies = ti.xcom_pull(task_ids=[
+'training_model_A',
+'training_model_B',
+'training_model_C'
+])
+if max(accuracies) > 8:
+return 'accurate'
+return 'inaccurate'
+def _training_model(model):
+return randint(1, 10)
+with DAG("my_dag",
+start_date=datetime(2021, 1 ,1), 
+schedule_interval='@daily', 
+catchup=False) as dag:
+training_model_tasks = [
+PythonOperator(
+task_id=f"training_model_{model_id}",
+python_callable=_training_model,
+op_kwargs={
+"model": model_id
 }
-
-# Step 3: Creating DAG Object
-dag = DAG(dag_id='DAG-1',
-        default_args=default_args,
-        schedule_interval='@once', 
-        catchup=False
-    )
-
-# Step 4: Creating task
-# Creating first task
- start = DummyOperator(task_id = 'start', dag = dag)
-# Creating second task 
- end = DummyOperator(task_id = 'end', dag = dag)
-
- # Step 5: Setting up dependencies 
-start >> end
+) for model_id in ['A', 'B', 'C']
+]
+choosing_best_model = BranchPythonOperator(
+task_id="choosing_best_model",
+python_callable=_choosing_best_model
+)
+accurate = BashOperator(
+task_id="accurate",
+bash_command="echo 'accurate'"
+)
+inaccurate = BashOperator(
+task_id="inaccurate",
+bash_command=" echo 'inaccurate'"
+)
+training_model_tasks >> choosing_best_model >> [accurate, inaccurate]
