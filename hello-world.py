@@ -10,7 +10,7 @@ from airflow.operators.python_operator import PythonOperator
 
 # initializing the default arguments
 default_args = {
-		'owner': 'Ranga',
+		'owner': 'airflow',
 		'start_date': datetime(2022, 3, 4),
 		'retries': 3,
 		'retry_delay': timedelta(minutes=5)
@@ -22,7 +22,8 @@ hello_world_dag = DAG('hello_world_dag',
 		description='Hello World DAG',
 		schedule_interval='* * * * *', 
 		catchup=False,
-		tags=['example, helloworld']
+		tags=['example, helloworld'],
+		access_control={"All": {"can_read", "can_edit", "can_delete"}},
 )
 
 # python callable function
