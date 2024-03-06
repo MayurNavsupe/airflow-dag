@@ -23,7 +23,7 @@ hello_world_dag = DAG('hello_world_dag',
 		schedule_interval='* * * * *', 
 		catchup=False,
 		tags=['example, helloworld'],
-		access_control={"qa3": {"can_read", "can_edit", "can_delete"}},
+		access_control={"role_qa3": {"can_read", "can_edit", "can_delete"}},
 )
 
 # python callable function
