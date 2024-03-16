@@ -11,7 +11,6 @@ from airflow.operators.python_operator import PythonOperator
 # initializing the default arguments
 default_args = {
 		'owner': 'airflow',
-		 'schedule_interval'='@once',
 }
 
 # Instantiate a DAG object
