@@ -20,7 +20,7 @@ hello_world_dag = DAG('run_once_dag',
 		schedule_interval='* * * * *', 
 		catchup=False,
 		tags=['example, helloworld'],
-		access_control={"all": {"can_read", "can_edit", "can_delete"}},
+		access_control={"All": {"can_read", "can_edit", "can_delete"}},
 )
 
 # python callable function
