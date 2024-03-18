@@ -14,7 +14,7 @@ default_args = {
 }
 
 # Instantiate a DAG object
-hello_world_dag = DAG('run_once_dag',
+hello_world_dag = DAG('empty_access_control_dag',
 		default_args=default_args,
 		description='Hello World DAG',
 		schedule_interval='@once', 
