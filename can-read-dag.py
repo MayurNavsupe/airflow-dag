@@ -21,7 +21,7 @@ hello_world_dag = DAG('can_read_permission_only',
 		catchup=False,
 		tags=['example, can read'],
 		access_control={
-		'qa2': {
+		'role_member': {
 			'can_read',
 			'can_edit',
 			'can_delete'
