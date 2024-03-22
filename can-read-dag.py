@@ -20,7 +20,13 @@ hello_world_dag = DAG('can_read_permission_only',
 		schedule_interval='@once', 
 		catchup=False,
 		tags=['example, can read'],
-		access_control={"All": {"can_read", "can_edit", "can_delete"}},
+		access_control={
+		'All': {
+			'can_read',
+			'can_edit',
+			'can_delete'
+		}
+	}
 )
 
 # python callable function
