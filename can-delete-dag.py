@@ -25,7 +25,8 @@ can_delete_dag = DAG('can_delete_dag',
 		tags=['example, can_delete'],
 		access_control={
 			"All": 
-			{"can_delete"}
+			{"can_read",
+			 "can_delete"}
 		},
 )
 
