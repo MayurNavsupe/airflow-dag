@@ -19,11 +19,14 @@ default_args = {
 # Instantiate a DAG object
 can_delete_dag = DAG('can_delete_dag',
 		default_args=default_args,
-		description='Hello World DAG',
+		description='Can delete permission DAG',
 		schedule_interval='@once', 
 		catchup=False,
 		tags=['example, can_delete'],
-		access_control={"All": {"can_delete"}},
+		access_control={
+			"All": 
+			{"can_delete"}
+		},
 )
 
 # python callable function
