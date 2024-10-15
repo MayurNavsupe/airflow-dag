@@ -17,7 +17,7 @@ default_args = {
 }
 
 # Instantiate a DAG object
-can_read_dag = DAG('can_read_permission_only',
+can_read_dag = DAG('Read_Only_DAG',
 		default_args=default_args,
 		description='Can read permission dag',
 		schedule_interval='@once', 
