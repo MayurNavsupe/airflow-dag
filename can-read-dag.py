@@ -11,20 +11,21 @@ from airflow.operators.python_operator import PythonOperator
 # initializing the default arguments
 default_args = {
 		'owner': 'airflow',
+		'start_date': datetime(2022, 3, 4),
+		'retries': 3,
+		'retry_delay': timedelta(minutes=5)
 }
 
 # Instantiate a DAG object
-hello_world_dag = DAG('can_read_permission_only',
+can_read_dag = DAG('can_read_permission_only',
 		default_args=default_args,
 		description='Can read permission dag',
 		schedule_interval='@once', 
 		catchup=False,
 		tags=['example, can read'],
 		access_control={
-		'role_qa2': {
-			'can_read',
-			'can_edit',
-			'can_delete'
+		'role_user': {
+			'can_read'
 		}
 	}
 )
