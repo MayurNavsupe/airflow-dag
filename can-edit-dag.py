@@ -23,7 +23,13 @@ can_edit_dag = DAG('can_edit_only_dag',
 		schedule_interval='@once', 
 		catchup=False,
 		tags=['example, can edit'],
-		access_control={"qa1": {"can_edit"}},
+		access_control=
+		   {
+			   "All": 
+			   {
+				   "can_edit"
+			   }
+		   },
 )
 
 # python callable function
