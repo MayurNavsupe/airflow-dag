@@ -11,6 +11,9 @@ from airflow.operators.python_operator import PythonOperator
 # initializing the default arguments
 default_args = {
 		'owner': 'airflow',
+		'start_date': datetime(2022, 3, 4),
+		'retries': 3,
+		'retry_delay': timedelta(minutes=5)
 }
 
 # Instantiate a DAG object
