@@ -17,7 +17,7 @@ default_args = {
 }
 
 # Instantiate a DAG object
-hello_world_dag = DAG('can_delete_dag',
+can_delete_dag = DAG('can_delete_dag',
 		default_args=default_args,
 		description='Hello World DAG',
 		schedule_interval='@once', 
