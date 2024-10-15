@@ -17,12 +17,12 @@ default_args = {
 }
 
 # Instantiate a DAG object
-can_delete_dag = DAG('can_delete_dag',
+can_delete_dag = DAG('Delete Only DAG',
 		default_args=default_args,
 		description='Can delete permission DAG',
 		schedule_interval='@once', 
 		catchup=False,
-		tags=['example, can_delete'],
+		tags=['automation', 'can_delete'],
 		access_control={
 			"All": 
 			{"can_read",
