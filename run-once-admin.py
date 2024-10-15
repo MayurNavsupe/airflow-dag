@@ -19,7 +19,7 @@ default_args = {
 # Instantiate a DAG object
 hello_world_dag = DAG('run_once_dag_admin',
 		default_args=default_args,
-		description='Hello World DAG',
+		description='Run once DAG',
 		schedule_interval='* * * * *', 
 		catchup=False,
 		tags=['example, helloworld'],
