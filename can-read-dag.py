@@ -24,7 +24,7 @@ can_read_dag = DAG('can_read_permission_only',
 		catchup=False,
 		tags=['example, can read'],
 		access_control={
-		'auto_user': {
+		'all': {
 			'can_read'
 		}
 	}
