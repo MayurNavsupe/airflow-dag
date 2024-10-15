@@ -17,7 +17,7 @@ default_args = {
 }
 
 # Instantiate a DAG object
-can_edit_dag = DAG('can_edit_only_dag',
+can_edit_dag = DAG('Edit_Only_DAG',
 		default_args=default_args,
 		description='Dag with can edit permission',
 		schedule_interval='@once', 
