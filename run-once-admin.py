@@ -17,10 +17,10 @@ default_args = {
 }
 
 # Instantiate a DAG object
-hello_world_dag = DAG('run_once_dag_admin',
+run_once_dag = DAG('run_once_dag_admin',
 		default_args=default_args,
 		description='Run once DAG',
-		schedule_interval='* * * * *', 
+		schedule_interval='@once', 
 		catchup=False,
 		tags=['example, helloworld'],
 		access_control={"qa1": {"can_read", "can_edit", "can_delete"}},
